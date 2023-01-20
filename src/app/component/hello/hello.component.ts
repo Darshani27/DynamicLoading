@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-hello',
@@ -10,7 +10,12 @@ export class HelloComponent implements OnInit {
   constructor() { }
 
   name:string='';
+  @Input() data: any;
+  @Output() dataToSent=new EventEmitter();
   ngOnInit(): void {
   }
-
+   sendData()
+   {
+    this.dataToSent.emit('Data from Hello');
+   }
 }

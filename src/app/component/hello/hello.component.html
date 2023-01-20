@@ -1,3 +1,9 @@
-<h1>
-    Hello Loaded {{name}}
-</h1>
+<mat-card>
+    <h1>
+        Hello Loaded <i>{{name}}</i>
+    </h1>
+    <h2>
+        {{data}}
+    </h2>
+    <button mat-stroked-button  (click)="sendData()">Send Data From Hello</button>
+</mat-card>

@@ -1,14 +1,16 @@
 <router-outlet></router-outlet>
 <ng-container>
-  <button (click)="loadComponent()">
+  <button mat-raised-button color="primary" (click)="loadComponent()">
     Add Component
   </button>
 </ng-container>
 &nbsp;
 <ng-container>
-  <button (click)="removeComponent()">
+  <button mat-raised-button color="warn" (click)="removeComponent()">
     Remove Component
   </button>
 </ng-container>
 
-<ng-template alertHost></ng-template>
+<ng-template placeHolder></ng-template>
+
+<p *ngIf="helloData"style="margin-top:160px">Data Recieved : <i>{{helloData}}</i></p>

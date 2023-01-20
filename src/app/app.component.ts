@@ -10,31 +10,26 @@ import { PlaceHolder } from './PlaceHolder.directive';
 export class AppComponent {
   title = 'dynamicloading';
   componentRef!: ComponentRef<HelloComponent>;
-  // @ViewChild('template',{read: ViewContainerRef})
-  // viewTemplate!: ViewContainerRef;
+  @ViewChild('template',{read: ViewContainerRef})
+  viewTemplate!: ViewContainerRef;
 
   @ViewChild(PlaceHolder,{static:true})
   alertHost!: PlaceHolder;
-  private messages:{type:Type<HelloComponent>}[]=[
-    {
-      type:HelloComponent
-    }
-  ];
-  currentIndex!: number;
-  constructor(private cfr:ComponentFactoryResolver)
-  {
-
-  }
-
-/*
- Prior to Angular 13
-*/
-  // loadComponent(): void
+  helloData: any;
+  // constructor(private cfr:ComponentFactoryResolver)
   // {
-  //   const componentFactory = this.cfr.resolveComponentFactory(HelloComponent);
-  //   this.componentRef = this.viewTemplate.createComponent(componentFactory);
-  //   this.componentRef.instance.name='SuccessFully';
+
   // }
+
+// /*
+//  Prior to Angular 13
+// */
+//   loadComponent(): void
+//   {
+//     const componentFactory = this.cfr.resolveComponentFactory(HelloComponent);
+//     this.componentRef = this.viewTemplate.createComponent(componentFactory);
+//     this.componentRef.instance.name='SuccessFully';
+//   }
 
 
   /*
@@ -47,11 +42,16 @@ export class AppComponent {
     this.alertHost.viewContainerRef?.clear();
     const componentRef=this.alertHost.viewContainerRef?.createComponent(HelloComponent);
     componentRef.instance.name='Successfully';
+    componentRef.instance.data='Data from App';
+    componentRef.instance.dataToSent.subscribe((res:any)=>{
+      this.helloData=res;
+    })
   }
 
   removeComponent(): void
   {
     this.alertHost.viewContainerRef?.clear();
+    this.helloData='';
   }
 }
 
