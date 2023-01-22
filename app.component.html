@@ -1,0 +1,16 @@
+<router-outlet></router-outlet>
+<ng-container *ngFor="let x of components;">
+  <button mat-raised-button color="primary" (click)="loadComponent(x.id,x.component,x.data)">
+    {{x.name}} 
+  </button>
+</ng-container>
+&nbsp;
+<ng-container>
+  <button mat-raised-button color="warn" (click)="removeComponent()">
+    Remove Component
+  </button>
+</ng-container>
+
+<ng-template placeHolder></ng-template>
+
+<p *ngIf="customerData "style="margin-top:160px">Data Recieved : <i>{{customerData}}</i></p>
